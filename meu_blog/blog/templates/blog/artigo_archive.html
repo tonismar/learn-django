@@ -1,0 +1,16 @@
+<html>
+<head>
+<link rel="alternate" type="application/rss+xml" title="Ultimos artigos do Tonismar" href="/rss/ultimos/" />
+</head>
+<body>
+
+<h1>Meu blog</h1>
+
+{% for artigo in latest %}
+<h2>{{ artigo.titulo }}</h2>
+
+{{ artigo.conteudo }}
+{% endfor %}
+
+</body>
+</html>
