@@ -1,16 +1,18 @@
-<html>
-<head>
-<link rel="alternate" type="application/rss+xml" title="Ultimos artigos do Tonismar" href="/rss/ultimos/" />
-</head>
-<body>
+{% extends "base.html" %}
 
-<h1>Meu blog</h1>
+{% block conteudo %}
+<img src="{{ MEDIA_URL }}foto.jpg" height="150" width="80"/>
 
 {% for artigo in latest %}
-<h2>{{ artigo.titulo }}</h2>
-
-{{ artigo.conteudo }}
+    <div class="artigo">
+        <a href="{% url blog.views.artigo artigo_id=artigo.id %}">
+            <h2>{{ artigo.titulo }}</h2>
+        </a>
+        <div class="conteudo">
+            Published {{ artigo.publicacao|timesince }}<br/>
+            {{ artigo.conteudo }}
+        </div>
+    </div>
 {% endfor %}
 
-</body>
-</html>
+{% endblock %}

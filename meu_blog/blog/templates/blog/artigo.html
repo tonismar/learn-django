@@ -1,11 +1,9 @@
-<html>
-<body>
+{% extends "base.html" %}
 
-Blog do Tonismar
+{% block titulo %}{{ artigo.titulo }} - 
+{{ block.super }}{% endblock %}
+{% block h1 %}{{ artigo.titulo }}{% endblock %}
 
-<h1>{{ artigo.titulo }}</h1>
-
+{% block conteudo %}
 {{ artigo.conteudo }}
-
-</body>
-</html>
+{% endblock %}

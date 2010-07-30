@@ -1,4 +1,6 @@
 # Django settings for meu_blog project.
+import os
+PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -12,7 +14,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'meu_blog.db',                      # Or path to database file if using sqlite3.
+        'NAME': os.path.join(PROJECT_ROOT_PATH,'meu_blog.db'),                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -31,7 +33,7 @@ TIME_ZONE = 'America/Sao_Paulo'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 SITE_ID = 1
 
@@ -45,17 +47,17 @@ USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(PROJECT_ROOT_PATH,'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
+ADMIN_MEDIA_PREFIX = '/admin_media/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '_qw5u8l9vlb2ltmguf0k8@$&l-t4e3s)*^*kqy^o!o8ofe9l82'
@@ -73,6 +75,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+	'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 
 ROOT_URLCONF = 'meu_blog.urls'
@@ -81,6 +84,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+	os.path.join(PROJECT_ROOT_PATH,'templates'),
 )
 
 INSTALLED_APPS = (
@@ -92,5 +96,15 @@ INSTALLED_APPS = (
 	'django.contrib.syndication',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
+	'django.contrib.flatpages',
 	'blog',
 )
+
+#EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'webmail.cnm.org.br'
+#EMAIL_HOST_USER = 'tonismar@gmail.com'
+EMAIL_HOST_USER = 'tonismar.bernardo@cnm.org.br'
+#EMAIL_HOST_PASSWORD = ''
+#EMAIL_SUBJECT_PREFIX = '[Tonismar\'s blog]'
+#EMAIL_PORT =587 
+#EMAIL_USE_TLS = True
