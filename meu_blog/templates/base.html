@@ -1,0 +1,14 @@
+<html>
+<head>
+<title>
+    {% block titulo %}Tonismar's blog{% endblock %}
+</title>
+<link rel="alternate" type="application/rss+xml" title="Last articles from Tonismar" href="/rss/ultimos/"/>
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}layout.css"/>
+</head>
+<body>
+    <h1>{% block h1 %}Tonismar's blog{% endblock %}</h1>
+    {% block conteudo %}{% endblock %}
+    {% include "rodape.html" %}
+</body>
+</html>
