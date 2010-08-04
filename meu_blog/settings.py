@@ -2,7 +2,9 @@
 import os
 PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-DEBUG = True
+LOCAL = False
+
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -41,6 +43,11 @@ SITE_ID = 1
 # to load the internationalization machinery.
 USE_I18N = True
 
+try:
+	from local_settings import *
+except ImportError:
+	pass
+
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale
 USE_L10N = True
@@ -78,7 +85,7 @@ MIDDLEWARE_CLASSES = (
 	'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 
-ROOT_URLCONF = 'meu_blog.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -97,6 +104,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
 	'django.contrib.flatpages',
+	'django.contrib.comments',
 	'blog',
 )
 

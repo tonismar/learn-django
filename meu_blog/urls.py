@@ -27,8 +27,13 @@ urlpatterns = patterns('',
 
 	(r'^artigo/(?P<artigo_id>\d+)/$', 'blog.views.artigo'),
 
-	(r'^media/(.*)$', 'django.views.static.serve',
-		{'document_root': settings.MEDIA_ROOT}),
-
 	(r'^contato/$', 'views.contato'),
+
+	(r'^comments/', include('django.contrib.comments.urls')),
 )
+
+if settings.LOCAL:
+	urlpatterns += patterns('',
+		(r'^media/(.*)$', 'django.views.static.serve',
+			{'document_root': settings.MEDIA_ROOT}),
+	)

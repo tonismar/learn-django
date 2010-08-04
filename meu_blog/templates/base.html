@@ -1,14 +1,66 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xml:lang="pt-br"
+    lang="pt-br"
+>
 <head>
-<title>
-    {% block titulo %}Tonismar's blog{% endblock %}
-</title>
-<link rel="alternate" type="application/rss+xml" title="Last articles from Tonismar" href="/rss/ultimos/"/>
-<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}layout.css"/>
+<title>{% block titulo %}Tonismar's blog{% endblock %}</title>
+
+{% block meta %}
+<meta http-equiv="Content-type"
+    content="text/html;
+    charset=utf-8" />
+<meta http-equiv="Content-Language" content="pt-br" />
+<meta name="keywords"
+    content="Python, Django, Tonismar, Bernardo, blog" />
+<meta name="description" content="This is the Tonismar's blog, a simple guy learning Django." />
+{% endblock meta %}
+
+{% block feeds %}
+<link rel="alternate" 
+    type="application/rss+xml" 
+    title="Last articles from Tonismar" 
+    href="/rss/ultimos/"/>
+{% endblock feeds %}
+
+{% block style %}
+<link rel="stylesheet" 
+    type="text/css" 
+    href="{{ MEDIA_URL }}layout.css"/>
+{% endblock style %}
+
+{% block scripts %}
+{% endblock scripts %}
 </head>
+
 <body>
-    <h1>{% block h1 %}Tonismar's blog{% endblock %}</h1>
-    {% block conteudo %}{% endblock %}
-    {% include "rodape.html" %}
+    <div id="tudo">
+        <div id="topo">
+            {% block topo %}
+            <div id="foto">&nbsp;</div>
+            Tonismar's blog
+            {% endblock topo %}
+        </div>
+
+        <div id="menu">
+            {% block menu %}
+            {% spaceless %}
+            <ul>
+                <li><a href="/">Initial page</a></li>
+                <li><a href="/about-me">About me</a></li>
+                <li><a href="{% url views.contato %}">Contact</a></li>
+            </ul>
+            {% endspaceless %}
+            {% endblock menu %}
+        </div>
+
+        <h1>{% block h1 %}{% endblock %}</h1>
+        <div class="corpo">
+            {% block conteudo %}{% endblock %}
+        </div>
+
+        {% include "rodape.html" %}
+    </div>
 </body>
 </html>
